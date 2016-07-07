@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 数据源1 -->
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="jdbcInterceptors"
+					value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer" />
+				<property name="testWhileIdle" value="true" />
+				<property name="testOnBorrow" value="true" />
+				<property name="removeAbandoned" value="true" />
+				<property name="logAbandoned" value="true" />
+				<property name="validationQuery" value="SELECT 1" />
+				<property name="maxActive" value="10" />
+				<property name="initialSize" value="1" />
+				<property name="minIdle" value="1" />
+				<property name="maxIdle" value="2" />
+				<property name="maxWait" value="100000" />
+
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:mapper/wx/**/*Mapper.xml" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.rtmap.*.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+<!-- 数据源2 -->
+	<bean id="promo3DataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="jdbcInterceptors"
+					value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer" />
+				<property name="testWhileIdle" value="true" />
+				<property name="testOnBorrow" value="true" />
+				<property name="removeAbandoned" value="true" />
+				<property name="logAbandoned" value="true" />
+				<property name="validationQuery" value="SELECT 1" />
+				<property name="maxActive" value="10" />
+				<property name="initialSize" value="1" />
+				<property name="minIdle" value="1" />
+				<property name="maxIdle" value="2" />
+				<property name="maxWait" value="100000" />
+
+				<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="${jdbc.promo3.url}" />
+				<property name="username" value="${jdbc.promo3.username}" />
+				<property name="password" value="${jdbc.promo3.password}" />
+
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="promo3SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="promo3DataSource" />
+		<property name="mapperLocations" value="classpath*:mapper/promo3/**/*Mapper.xml"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.rtmap.promo3.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="promo3SqlSessionFactory" />
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="promo3TransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="promo3DataSource" />
+	</bean>
+	
+	
+	
+	<!-- enable transaction annotation support -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+</beans>

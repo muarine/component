@@ -1,0 +1,53 @@
+{
+      "business":{
+            "base_info":{
+                   "sid":"${__data.sid}",
+                   "business_name":"${__data.business_name}",
+                   <#if __data.branch_name ??>
+               	   "branch_name":"${__data.branch_name}",
+                   </#if>
+                   "province":"${__data.province}",
+                   "city":"${__data.city}",
+                   "district":"${__data.district}",
+                   "address":"${__data.address}",
+                   "telephone":"${__data.address}",
+                   "categories":[
+                   		<#list __data.getCategories() as c>
+                   			<#if c_has_next>
+                   				"${c}",
+                   			<#else>
+                   				"${c}"
+                   			</#if>
+						</#list>
+						],
+                   "offset_type":${__data.offset_type},
+                   "longitude":${__data.longitude},
+                   "latitude":${__data.latitude}
+                   <#if __data.photos??>
+	                   ,"photo_list":[
+	                   		<#list __data.photos as s>
+	                   			{"photo_url":"${s}"}
+	                   			<#if s_has_next>
+	                   				,
+	                   			</#if>
+	                   		</#list>
+	                   ]
+                   </#if>
+                   <#if __data.recommend??>
+	                   ,"recommend":"${__data.recommend}"
+                   </#if>
+                   <#if __data.special??>
+	                   ,"special":"${__data.special}"
+                   </#if>
+                   <#if __data.introduction??>
+	                   ,"introduction":"${__data.introduction}"
+                   </#if>
+                   <#if __data.open_time??>
+	                   ,"open_time":"${__data.open_time}"
+                   </#if>
+                   <#if __data.avg_price??>
+	                   ,"avg_price":${__data.avg_price}
+                   </#if>
+             }
+    }
+}

@@ -1,0 +1,176 @@
+{
+  "card":{
+      "card_type": "${__data.card_type?upper_case}",
+      "${__data.card_type}": {
+          "base_info": {
+              "logo_url":  "${__data.logo_url}",
+              "brand_name": "${__data.brand_name}",
+              "code_type": "${__data.code_type}",
+              "title": "${__data.title}",
+              <#if __data.sub_title??>
+              	"sub_title": "${__data.sub_title}",
+              </#if>
+              "color": "${__data.color}",
+              "notice": "${__data.notice}",
+              <#if __data.service_phone??>
+	              "service_phone": "${__data.service_phone}",
+              </#if>
+              "description": "${__data.description}",
+              "date_info": ${__data.date_info},
+              "sku": ${__data.sku},
+              <#if __data.get_limit??>
+              "get_limit": ${__data.get_limit},
+              </#if>
+              <#if __data.use_custom_code??>
+              "use_custom_code": ${__data.use_custom_code?string('true','false')},
+              </#if>
+              <#if __data.get_custom_code_mode??>
+              "get_custom_code_mode": "GET_CUSTOM_CODE_MODE_DEPOSIT",
+              </#if>
+              <#if __data.bind_openid??>
+              "bind_openid": ${__data.bind_openid?string('true','false')},
+              </#if>
+              <#if __data.can_share??>
+              "can_share": ${__data.can_share?string('true','false')},
+              </#if>
+              <#if __data.can_give_friend??>
+              "can_give_friend": ${__data.can_give_friend?string('true','false')},
+              </#if>
+              <#if __data.location_id_list??>
+              "location_id_list":[
+                   		<#list __data.getLocation_id_list() as l>
+                   			"${l}"
+                   			<#if l_has_next>
+                   				,
+                   			</#if>
+						</#list>
+			  ],
+              </#if>
+              <#if __data.center_title??>
+              "center_title": "${__data.center_title}",
+              </#if>
+              <#if __data.center_sub_title??>
+              "center_sub_title": "${__data.center_sub_title}",
+              </#if>
+              <#if __data.center_url??>
+              "center_url": "${__data.center_url}",
+              </#if>
+              <#if __data.custom_url_name??>
+              "custom_url_name": "${__data.custom_url_name}",
+              </#if>
+              <#if __data.custom_url??>
+              "custom_url": "${__data.custom_url}",
+              </#if>
+              <#if __data.custom_url_sub_title??>
+              "custom_url_sub_title": "${__data.custom_url_sub_title}",
+              </#if>
+              <#if __data.promotion_url_name??>
+              "promotion_url_name": "${__data.promotion_url_name}",
+              </#if>
+              <#if __data.promotion_url??>
+              "promotion_url": "${__data.promotion_url}",
+              </#if>
+              <#if __data.source??>
+              "source": "${__data.source}"
+              </#if>
+          },
+           "advanced_info": {
+          	   <#if __data.use_condition??>
+               "use_condition": ${__data.use_condition},
+          	   </#if>
+               "abstract": {
+               	   <#if __data.stract.abstract_name??>
+               	   		"abstract": "${__data.stract.abstract_name}",
+                   </#if>
+                   <#if __data.stract?? && __data.stract.icon_url_list??>
+	                   "icon_url_list": [
+	                   		<#list __data.stract.icon_url_list as l>
+	                   			<#if l_has_next>
+	                   				"${l}",
+	                   			<#else>
+	                   				"${l}"
+	                   			</#if>
+							</#list>
+	                   ]
+                   </#if>
+               }
+               <#if __data.text_img_list?? || __data.time_limit?? || __data.business_service??>
+               		,
+               </#if>
+               <#if __data.text_img_list??>
+	               "text_image_list": [
+	                   	<#list __data.text_img_list as t>
+	           			{
+	       					"image_url":"${t.image_url}",
+	       					"text":"${t.text}"
+	           			}
+	               		<#if t_has_next>
+	               		,
+	           			</#if>
+						</#list>
+	               ]
+               </#if>
+               <#if __data.time_limit?? || __data.business_service??>
+               		,
+               </#if>
+               <#if __data.time_limit??>
+	               "time_limit": [
+	               		<#list __data.time_limit as t>
+	           			{
+	       					"type":"${t.type}",
+	       					<#if t.begin_hour??>
+	       						"begin_hour":${t.begin_hour},
+	       					</#if>
+	       					<#if t.end_hour??>
+	       						"end_hour":${t.end_hour},
+	       					</#if>
+	       					<#if t.begin_minute??>
+	       						"begin_minute":${t.begin_minute},
+	       					</#if>
+	       					<#if t.end_minute??>
+	       						"end_minute":${t.end_minute}
+	       					</#if>
+	           			}
+						</#list>
+	               ]
+               </#if>
+               <#if __data.business_service??>
+               ,
+               </#if>
+               <#if __data.business_service ??>
+               "business_service": [
+               		<#list __data.business_service as t>
+           			{
+       					"${t}"
+           			}
+           			<#if t_has_next>
+           				,
+           			</#if>
+					</#list>
+               ]
+               </#if>
+           },
+           <#-- 团购券 -->
+           <#if __data.deal_detail??>
+       	   "deal_detail":"${__data.deal_detail}"
+           </#if>
+           <#-- 代金券 -->
+           <#if __data.least_cost?? && __data.reduce_cost??>
+      	   "least_cost":${__data.least_cost},
+      	   "reduce_cost":${__data.reduce_cost}
+           </#if>
+           <#-- 折扣券 -->
+           <#if __data.discount??>
+           "discount":"${__data.discount}"
+           </#if>
+           <#-- 兑换券 -->
+           <#if __data.gift??>
+           "gift":"${__data.gift}"
+           </#if>
+           <#-- 兑换券 -->
+           <#if __data.default_detail??>
+           "default_detail":"${__data.default_detail}"
+           </#if>
+      }
+  }
+}

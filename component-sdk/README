@@ -1,0 +1,28 @@
+底层封装微信SDK
+
+api 		微信API
+exp			SDK内部异常
+handler		对外开放Handler
+model		消息解析/封装处理类，freemaker模板解析
+mp.*		回调消息封装类
+sign		消息加解密
+utils		SDK内部工具类
+
+
+fid	权限集说明
+
+1	消息管理权限			class—>MpAPI
+2	用户管理权限			class->UserAPI
+3	帐号服务权限			class->UserAPI
+4	网页服务权限			class->WebServiceAPI
+5	微信小店权限			class->暂无
+6	微信多客服权限			class->暂无
+7	群发与通知权限			class->NotifyAPI
+8	微信卡券权限			class->CardAPI
+9	微信扫一扫权限			class->暂无
+10	微信连WIFI权限			class->暂无
+11	素材管理权限			class->MaterialAPI
+12	微信摇周边权限			class->ShakeAroundAPI
+13	微信门店权限			class->PoiAPI
+14	微信支付权限			class->PayAPI
+15	自定义菜单权限			class->MenuAPI

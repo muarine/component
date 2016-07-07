@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    	xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"> 
+		
+		<import resource="classpath:springContext/spring-mvc.xml" />
+		<import resource="classpath:springContext/spring-db.xml" />
+		<!-- <import resource="classpath:springContext/spring-aop.xml" /> -->
+		<import resource="classpath:springContext/spring-memcached.xml" />
+		<import resource="classpath:springContext/spring-common.xml" />
+		<import resource="classpath:springContext/spring-threadpool.xml" />
+		<!-- <import resource="classpath:springContext/spring-sendmail.xml" /> -->
+</beans>
+

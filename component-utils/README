@@ -1,0 +1,13 @@
+## 工具类
+
+exp				异常处理工具
+file			文件操作
+http			http请求
+json			json解析和封装
+security		加密工具
+string			字符串相关
+thread			线程
+time			时间操作
+
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="Console">
+			<PatternLayout pattern="%d %-5p [%c] (%t) %m%n" />
+		</Console>
+
+		<RollingRandomAccessFile name="RollingRandomAccessFile"
+			immediateFlush="true" fileName="${sys:catalina.base}/logs/component/component.log"
+			filePattern="${sys:catalina.base}/logs/component/component.%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d %-5p [%c] (%t) %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
+		<!-- 摇一摇5+1beacon推送日志 -->
+		<RollingRandomAccessFile name="Shake_Around" fileName="${sys:catalina.base}/logs/shakearound/shakearound.log" 
+					filePattern="${sys:catalina.base}/logs/shakearound/shakearound.%d{yyyy-MM-dd}.log" immediateFlush="true" ignoreExceptions="true">
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss}-%msg%n"/>
+			<Policies>
+				<OnStartupTriggeringPolicy/> <!-- with %i in filePattern -->
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="50MB"/> <!-- with %i in filePattern -->
+			</Policies>
+			<!-- <DefaultRolloverStrategy fileIndex="max" max="500" compressionLevel="0"/> -->
+	  	</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingRandomAccessFile" />
+		</Root>
+	</Loggers>
+
+</Configuration>

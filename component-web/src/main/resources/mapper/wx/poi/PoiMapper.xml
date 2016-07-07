@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rtmap.core.mapper.PoiMapper" >
+  	
+  	<insert id="insert" parameterType="com.rtmap.core.domain.Poi">
+  		insert into wx_poi
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="fkAuthId != null" >
+	        fk_auth_id,
+	      </if>
+	      <if test="sid != null" >
+	        sid,
+	      </if>
+	      <if test="poiId != null" >
+	        poi_id,
+	      </if>
+	      <if test="businessName != null" >
+	        business_name,
+	      </if>
+	      <if test="branchName != null" >
+	        branch_name,
+	      </if>
+	      <if test="province != null" >
+	        province,
+	      </if>
+	      <if test="city != null" >
+	        city,
+	      </if>
+	      <if test="district != null" >
+	        district,
+	      </if>
+	      <if test="address != null" >
+	        address,
+	      </if>
+	      <if test="telephone != null" >
+	        telephone,
+	      </if>
+	      <if test="categories != null" >
+	        categories,
+	      </if>
+	      <if test="offsetType != null" >
+	        offset_type,
+	      </if>
+	      <if test="longitude != null" >
+	        longitude,
+	      </if>
+	      <if test="latitude != null" >
+	        latitude,
+	      </if>
+	      <if test="photoList != null" >
+	        photo_list,
+	      </if>
+	      <if test="recommend != null" >
+	        recommend,
+	      </if>
+	      <if test="special != null" >
+	        special,
+	      </if>
+	      <if test="introduction != null" >
+	        introduction,
+	      </if>
+	      <if test="openTime != null" >
+	        open_time,
+	      </if>
+	      <if test="avgPrice != null" >
+	        avg_price,
+	      </if>
+	      <if test="availableState != null" >
+	        available_state,
+	      </if>
+	      <if test="updateStatus != null" >
+	        update_status,
+	      </if>
+	      <if test="createTime != null" >
+	        create_time,
+	      </if>
+	    </trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="fkAuthId != null" >
+	        #{fkAuthId},
+	      </if>
+	      <if test="sid != null" >
+	        #{sid},
+	      </if>
+	      <if test="poiId != null" >
+	        #{poiId},
+	      </if>
+	      <if test="businessName != null" >
+	        #{businessName},
+	      </if>
+	      <if test="branchName != null" >
+	        #{branchName},
+	      </if>
+	      <if test="province != null" >
+	        #{province},
+	      </if>
+	      <if test="city != null" >
+	        #{city},
+	      </if>
+	      <if test="district != null" >
+	        #{district},
+	      </if>
+	      <if test="address != null" >
+	        #{address},
+	      </if>
+	      <if test="telephone != null" >
+	        #{telephone},
+	      </if>
+	      <if test="categories != null" >
+	        #{categories},
+	      </if>
+	      <if test="offsetType != null" >
+	        #{offsetType},
+	      </if>
+	      <if test="longitude != null" >
+	        #{longitude},
+	      </if>
+	      <if test="latitude != null" >
+	        #{latitude},
+	      </if>
+	      <if test="photoList != null" >
+	        #{photo_list},
+	      </if>
+	      <if test="recommend != null" >
+	        #{recommend},
+	      </if>
+	      <if test="special != null" >
+	        #{special},
+	      </if>
+	      <if test="introduction != null" >
+	        #{introduction},
+	      </if>
+	      <if test="openTime != null" >
+	        #{openTime},
+	      </if>
+	      <if test="avgPrice != null" >
+	        #{avgPrice},
+	      </if>
+	      <if test="availableState != null" >
+	        #{availableState},
+	      </if>
+	      <if test="updateStatus != null" >
+	        #{updateStatus},
+	      </if>
+	      <if test="createTime != null" >
+	        #{createTime},
+	      </if>
+	    </trim>
+	    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+		  SELECT LAST_INSERT_ID() AS id
+		 </selectKey>
+  	</insert>
+  	
+  	<update id="updatePoiId">
+  		update poi set poi_id = #{poiId} where sid = #{sid}
+  	</update>
+  	
+</mapper>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rtmap.core.mapper.AuthorizerMapper" >
+  
+  <select id="selectById" parameterType="long"  resultType="com.rtmap.core.domain.Authorizer">
+  	select * from u_authorizer where id = #{id}
+  </select>
+  <select id="getBaseInfo" parameterType="String"  resultType="com.rtmap.core.domain.Authorizer">
+  	select `id`,`appid`,`refresh_token` as refreshToken,`user_name` as userName,`state`,`create_time` as createTime from u_authorizer where appid = #{authAppid}
+  </select>
+  <select id="getRefreshToken" parameterType="String"  resultType="string">
+  	select `refresh_token` as refreshToken from u_authorizer where appid = #{authAppid}
+  </select>
+  <select id="getState" parameterType="String"  resultType="Integer">
+  	select `state` from u_authorizer where appid = #{authAppid}
+  </select>
+  
+  <insert id="insert" parameterType="com.rtmap.core.domain.Authorizer" keyProperty="id">
+		insert into u_authorizer
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="appid != null" >
+	        appid,
+	      </if>
+	      <if test="refreshToken != null" >
+	        refresh_token,
+	      </if>
+	      <if test="nickName != null" >
+	        nick_name,
+	      </if>
+	      <if test="headImg != null" >
+	        head_img,
+	      </if>
+	      <if test="serviceTypeInfo != null" >
+	        service_type_info,
+	      </if>
+	      <if test="verifyTypeInfo != null" >
+	        verify_type_info,
+	      </if>
+	      <if test="userName != null" >
+	        user_name,
+	      </if>
+	      <if test="alias != null" >
+	        alias,
+	      </if>
+	      <if test="qrcodeUrl != null" >
+	        qrcode_url,
+	      </if>
+	      <if test="funcInfo != null" >
+	        func_info,
+	      </if>
+	      <if test="state != null" >
+	        state,
+	      </if>
+	      <if test="createTime != null" >
+	        create_time,
+	      </if>
+	    </trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="appid != null" >
+	        #{appid},
+	      </if>
+	      <if test="refreshToken != null" >
+	        #{refreshToken},
+	      </if>
+	      <if test="nickName != null" >
+	        #{nickName},
+	      </if>
+	      <if test="headImg != null" >
+	      	#{headImg},
+	      </if>
+	      <if test="serviceTypeInfo != null" >
+	      	#{serviceTypeInfo},
+	      </if>
+	      <if test="verifyTypeInfo != null" >
+	      	#{verifyTypeInfo},
+	      </if>
+	      <if test="userName != null" >
+	      	#{userName},
+	      </if>
+	      <if test="alias != null" >
+	        #{alias},
+	      </if>
+	      <if test="qrcodeUrl != null" >
+	        #{qrcodeUrl},
+	      </if>
+	      <if test="funcInfo != null" >
+	        #{funcInfo},
+	      </if>
+	      <if test="state != null" >
+	        #{state},
+	      </if>
+	      <if test="createTime != null" >
+	        #{createTime},
+	      </if>
+	    </trim>
+	    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+		  SELECT LAST_INSERT_ID() AS id
+		 </selectKey>
+	</insert>
+  	
+  	<update id="update" parameterType="com.rtmap.core.domain.Authorizer">
+		update u_authorizer
+		<set >
+	      <if test="appid != null" >
+	        appid = #{appid},
+	      </if>
+	      <if test="refreshToken != null" >
+	        refresh_token = #{refreshToken},
+	      </if>
+	      <if test="nickName != null" >
+	        nick_name = #{nickName},
+	      </if>
+	      <if test="headImg != null" >
+	        head_img = #{headImg},
+	      </if>
+	      <if test="serviceTypeInfo != null" >
+	        service_type_info = #{serviceTypeInfo},
+	      </if>
+	      <if test="verifyTypeInfo != null" >
+	        verify_type_info = #{verifyTypeInfo},
+	      </if>
+	      <if test="userName != null" >
+	        user_name = #{userName},
+	      </if>
+	      <if test="alias != null" >
+	        alias = #{alias},
+	      </if>
+	      <if test="qrcodeUrl != null" >
+	        qrcode_url = #{qrcodeUrl},
+	      </if>
+	      <if test="funcInfo != null" >
+	        func_info = #{funcInfo},
+	      </if>
+	      <if test="state != null" >
+	        state = #{state},
+	      </if>
+	      <if test="createTime != null" >
+	        create_time = #{createTime},
+	      </if>
+	    </set>
+	    where id = #{id}
+	</update>
+  	
+  	<update id="updateRefreshToken">
+  		update u_authorizer set refresh_token = #{refreshToken} where appid = #{authAppid}
+  	</update>
+  	<update id="updateState">
+  		update u_authorizer set state = #{state} where appid = #{authAppid}
+  	</update>
+  	
+</mapper>

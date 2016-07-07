@@ -1,0 +1,196 @@
+<!--
+ - 
+ - RT MAP, Home of Professional MAP 
+ - Copyright 2015 Bit Main Inc. and/or its affiliates and other contributors
+ - as indicated by the @author tags. All rights reserved.
+ - See the copyright.txt in the distribution for a
+ - full listing of individual contributors.
+ - http://www.rtmap.com
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.rtmap</groupId>
+		<artifactId>component-parent</artifactId>
+		<version>1.0.1</version>
+	</parent>
+	<artifactId>component-web</artifactId>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+	<description>The admin module of component project</description>
+	<properties>
+		<wtpversion>1.8</wtpversion>
+		<wtpContextName>/</wtpContextName>
+		<eclipse.useProjectReferences>false</eclipse.useProjectReferences>
+		<skip_maven_deploy>false</skip_maven_deploy>
+		
+		
+		<spring.version>4.1.7.RELEASE</spring.version>
+		<aspectj.version>1.8.5</aspectj.version>
+		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis.spring.version>1.2.2</mybatis.spring.version>
+		<mysql.connector.version>5.1.29</mysql.connector.version>
+		<jackson.version>2.5.2</jackson.version>
+		<activation.version>1.1.1</activation.version>
+		<mail.version>1.4.7</mail.version>
+
+		<spymemcached.version>2.11.7</spymemcached.version>
+	</properties>
+	<dependencies>
+		<!-- 模块化聚合 -->
+        <dependency>
+            <groupId>com.rtmap</groupId>
+            <artifactId>component-sdk</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rtmap</groupId>
+            <artifactId>component-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+  		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>7.0.62</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+  		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>
+  		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+  		
+  		<!-- AspectJ dependencies -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+  		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+  		
+  		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.version}</version>
+		</dependency>
+  		
+  		<!-- tools -->	
+
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+			<version>${spymemcached.version}</version>
+		</dependency>
+  			
+		<!-- commons -->
+		
+		<!-- javaee -->
+  		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+		<!-- mail  -->
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>${activation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${mail.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>component-web</finalName>
+		<plugins>
+	        <plugin>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.1</version>
+	            <configuration>
+	                <source>1.8</source> <!-- yours Java version -->
+	                <target>1.8</target> <!-- yours Java version -->
+	            </configuration>
+	        </plugin>
+	    </plugins>
+	</build>
+</project>

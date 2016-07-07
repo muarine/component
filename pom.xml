@@ -1,0 +1,161 @@
+<!--
+ - 
+ - RT MAP, Home of Professional MAP 
+ - Copyright 2015 Bit Main Inc. and/or its affiliates and other contributors
+ - as indicated by the @author tags. All rights reserved.
+ - See the copyright.txt in the distribution for a
+ - full listing of individual contributors.
+ - http://www.rtmap.com
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.rtmap</groupId>
+	<artifactId>component-parent</artifactId>
+	<version>1.0.1</version>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+	<description>The parent project of component</description>
+	<url>http://www.rtmap.com/about.html</url>
+	<inceptionYear>2016</inceptionYear>
+	<organization>
+		<name>Rtmap</name>
+		<url>http://www.rtmap.com</url>
+	</organization>
+	<modules>
+		<module>component-sdk</module>
+		<module>component-utils</module>
+		<module>component-test</module>
+		<module>component-web</module>
+	</modules>
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<file>
+					<missing>.project</missing>
+				</file>
+			</activation>
+			<modules>
+				<module>component-test</module>
+			</modules>
+		</profile>
+	</profiles>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.11</junit.version>
+		<slf4j.version>1.7.13</slf4j.version>
+		<log4j.version>2.4.1</log4j.version>
+
+		<spring.version>4.2.3.RELEASE</spring.version>
+		<mybatis.version>3.3.0</mybatis.version>
+		<druid.version>1.0.11</druid.version>
+		<mybatis.spring.version>1.2.3</mybatis.spring.version>
+		<mysql.connector.version>5.1.37</mysql.connector.version>
+		<jackson.version>2.6.4</jackson.version>
+		<aspectj.version>1.8.5</aspectj.version>
+
+		<commons.io.version>2.4</commons.io.version>
+		<commons.lang.version>2.6</commons.lang.version>
+		<commons.codec>1.10</commons.codec>
+		<commons.logging.version>1.2</commons.logging.version>
+		<joda.time.version>2.3</joda.time.version>
+		<spymemcached.version>2.11.7</spymemcached.version>
+		<mail.version>1.4.7</mail.version>
+		<dom4j.version>1.6.1</dom4j.version>
+		<freemarker.version>2.3.20</freemarker.version>
+        
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<!-- junit -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>provided</scope>
+			</dependency>
+	  		<dependency>
+	            <groupId>commons-logging</groupId>
+	            <artifactId>commons-logging</artifactId>
+	            <version>${commons.logging.version}</version>
+	        </dependency>
+	  		<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+	  		
+	  		<!-- tools -->	
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.jaxrs</groupId>
+				<artifactId>jackson-jaxrs-json-provider</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+	  			
+			<!-- commons -->
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+			</dependency>
+	
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons.lang.version}</version>
+			</dependency>
+			
+		</dependencies>
+	</dependencyManagement>
+
+	<issueManagement>
+		<system>gitlab</system>
+		<url>http://182.92.3.90:12345/web/component/issues</url>
+	</issueManagement>
+	<scm>
+		<url>http://182.92.3.90:12345/web/component</url>
+		<connection>http://182.92.3.90:12345/web/component.git</connection>
+	</scm>
+	<developers>
+		<developer>
+			<name>maoyun(muarine)</name>
+			<id>muarine</id>
+			<email>maoyun@rtmap.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+</project>
+
+
