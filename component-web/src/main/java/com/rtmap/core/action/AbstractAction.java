@@ -46,8 +46,8 @@ public class AbstractAction extends AbstractJsonpResponseBodyAdvice{
 	 * @return
 	 */
 	public String getAuthAccessToken(String authAppid){
-	    String appid       = codeMap.get(MpConstant.APPID);
-	    String appsecret   = codeMap.get(MpConstant.APPSECRET);
+	    String appid       = commonMap.get(MpConstant.APPID);
+	    String appsecret   = commonMap.get(MpConstant.APPSECRET);
 	    return AuthManager.getAuthAccessToken(appid, appsecret, authAppid);
 	}
 	
@@ -57,8 +57,8 @@ public class AbstractAction extends AbstractJsonpResponseBodyAdvice{
 	 * @return
 	 */
 	public String getAccessToken(){
-	    String appid       = codeMap.get(MpConstant.APPID);
-	    String appsecret   = codeMap.get(MpConstant.APPSECRET);
+	    String appid       = commonMap.get(MpConstant.APPID);
+	    String appsecret   = commonMap.get(MpConstant.APPSECRET);
 	    return AuthManager.getAccessToken(appid, appsecret);
 	}
 	
