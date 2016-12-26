@@ -1,7 +1,5 @@
 ## 微信公众号三方平台
 
-## Quick Start
-
 * **Maven 模块聚合**
 ```xml
 <modules>
@@ -17,6 +15,11 @@
 * **component-util	常用工具类**
 * **component-test	单元测试**
 * **component-web	Web应用**
+
+## 如何接入使用
+* 导入数据库component-web/doc/database/component.sql
+* 更新component-web/src/main/resources/system.properties配置文件,具体操作参考文件中的注释
+
 
 ## Compile && Deploy
 ```bash
