@@ -1,17 +1,5 @@
 package com.rtmap.core.action;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.fastjson.JSONObject;
 import com.rtmap.core.cache.AuthManager;
 import com.rtmap.core.config.MpConstant;
@@ -24,6 +12,12 @@ import com.rtmap.wx.sdk.model.InMsgParser;
 import com.rtmap.wx.sdk.mp.in.InMsg;
 import com.rtmap.wx.sdk.sign.Sign;
 import com.rtmap.wx.sdk.sign.WXBizMsgCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 /**
  * 微信服务器与开发者服务器之间的认证，消息收发
  * 
@@ -45,7 +39,7 @@ public class MpAction extends AbstractAction {
 	 * 2) 将三个参数字符串拼接成一个字符串进行sha1加密 3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
 	 * 3) 这里可以添加多个账户，不同的{account}/message，提供给微信平台，只要验证通过即可
 	 * </pre>
-	 * @param appid		微信公众号APPID
+	 * @param authAppid		微信公众号APPID
 	 * @param request	请求request
 	 * @return
 	 */

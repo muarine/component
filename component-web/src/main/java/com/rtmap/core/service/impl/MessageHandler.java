@@ -1,56 +1,24 @@
 package com.rtmap.core.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSON;
+import com.rtmap.core.config.CardConstant;
+import com.rtmap.utils.http.TulingRobot;
+import com.rtmap.wx.sdk.exp.AesException;
+import com.rtmap.wx.sdk.model.OutMsgXmlBuilder;
+import com.rtmap.wx.sdk.mp.event.*;
+import com.rtmap.wx.sdk.mp.in.*;
+import com.rtmap.wx.sdk.mp.out.OutCustomMsg;
+import com.rtmap.wx.sdk.mp.out.OutMsg;
+import com.rtmap.wx.sdk.mp.out.OutTextMsg;
+import com.rtmap.wx.sdk.sign.WXBizMsgCrypt;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
-import com.rtmap.core.config.CardConstant;
-import com.rtmap.promo3.domain.ShakeUser;
-import com.rtmap.utils.http.TulingRobot;
-import com.rtmap.wx.sdk.exp.AesException;
-import com.rtmap.wx.sdk.model.OutMsgXmlBuilder;
-import com.rtmap.wx.sdk.mp.event.EventInMsg;
-import com.rtmap.wx.sdk.mp.event.InCardConsumeEvent;
-import com.rtmap.wx.sdk.mp.event.InCardMemberUpdateEvent;
-import com.rtmap.wx.sdk.mp.event.InCardPassCheckEvent;
-import com.rtmap.wx.sdk.mp.event.InCardPayOrderEvent;
-import com.rtmap.wx.sdk.mp.event.InCardRemindEvent;
-import com.rtmap.wx.sdk.mp.event.InCardUserDelEvent;
-import com.rtmap.wx.sdk.mp.event.InCardUserEnterSessionEvent;
-import com.rtmap.wx.sdk.mp.event.InCardUserGetEvent;
-import com.rtmap.wx.sdk.mp.event.InCardUserPayEvent;
-import com.rtmap.wx.sdk.mp.event.InCardUserViewEvent;
-import com.rtmap.wx.sdk.mp.event.InCustomEvent;
-import com.rtmap.wx.sdk.mp.event.InFollowEvent;
-import com.rtmap.wx.sdk.mp.event.InLocationEvent;
-import com.rtmap.wx.sdk.mp.event.InMassEvent;
-import com.rtmap.wx.sdk.mp.event.InMenuEvent;
-import com.rtmap.wx.sdk.mp.event.InPoiCheckNotifyEvent;
-import com.rtmap.wx.sdk.mp.event.InQrCodeEvent;
-import com.rtmap.wx.sdk.mp.event.InShakearoundLotteryBindEvent;
-import com.rtmap.wx.sdk.mp.event.InShakearoundUserShakeEvent;
-import com.rtmap.wx.sdk.mp.event.InTemplateMsgEvent;
-import com.rtmap.wx.sdk.mp.event.InVerifyFailEvent;
-import com.rtmap.wx.sdk.mp.event.InVerifySuccessEvent;
-import com.rtmap.wx.sdk.mp.in.InImageMsg;
-import com.rtmap.wx.sdk.mp.in.InLinkMsg;
-import com.rtmap.wx.sdk.mp.in.InLocationMsg;
-import com.rtmap.wx.sdk.mp.in.InMsg;
-import com.rtmap.wx.sdk.mp.in.InShortVideoMsg;
-import com.rtmap.wx.sdk.mp.in.InSpeechRecognitionResults;
-import com.rtmap.wx.sdk.mp.in.InTextMsg;
-import com.rtmap.wx.sdk.mp.in.InVideoMsg;
-import com.rtmap.wx.sdk.mp.in.InVoiceMsg;
-import com.rtmap.wx.sdk.mp.out.OutCustomMsg;
-import com.rtmap.wx.sdk.mp.out.OutMsg;
-import com.rtmap.wx.sdk.mp.out.OutTextMsg;
-import com.rtmap.wx.sdk.sign.WXBizMsgCrypt;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -67,8 +35,6 @@ public class MessageHandler{
 	
 	@Autowired
 	private ShakeParkService shakeParkService;
-	@Autowired
-	private UserService userService;
 	@Autowired
 	private PoiService poiService;
 	@Autowired
@@ -371,9 +337,6 @@ public class MessageHandler{
 		{
 			if(LOGGER.isDebugEnabled())  LOGGER.debug("关注：{}" , msg.getFromUserName());
 			// 1. 取出openid 2. 查询用户信息 3. 入库
-			String openid = msg.getFromUserName();
-			userService.syncUserInfo(appid , appsecret , authAppid , openid);
-			
 			Map<String,Object> selectMap = new HashMap<String,Object>();
 			selectMap.put("type", 1);	// type = 1 关注
 			selectMap.put("rule_name", msg.getToUserName());
@@ -383,14 +346,6 @@ public class MessageHandler{
 		if (InFollowEvent.EVENT_INFOLLOW_UNSUBSCRIBE.equals(msg.getEvent()))
 		{
 			if(LOGGER.isDebugEnabled())  LOGGER.debug("取消关注：{}" , msg.getFromUserName());
-			//同步用户的取消关注状态
-			ShakeUser user = new ShakeUser();
-			user.setAppid(authAppid);
-			user.setOpenid(msg.getFromUserName());
-			user.setUnsubscribe_time(System.currentTimeMillis()/1000);
-			user.setUpdate_time(System.currentTimeMillis());
-			user.setState(2);
-			userService.updateUnsubcribeState(user);
 //			outMsg.setContent("您已取消关注");
 			outMsg = null;
 		}

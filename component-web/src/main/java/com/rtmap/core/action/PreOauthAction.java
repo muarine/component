@@ -8,23 +8,21 @@
 */
 package com.rtmap.core.action;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.alibaba.fastjson.JSONObject;
 import com.rtmap.core.cache.TicketManager;
 import com.rtmap.core.config.MpConstant;
 import com.rtmap.utils.string.StringUtils;
 import com.rtmap.wx.sdk.api.WebServiceAPI;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Oauth前置跳转
@@ -42,11 +40,9 @@ public class PreOauthAction extends AbstractAction{
 	/**
 	 * Oauth认证获取用户OpenId
 	 * 
+	 * @param authAppid	授权方appId
 	 * @param request
-	 * @param param
-	 * @param redirectURL
-	 * @param ticket
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@RequestMapping("/{authAppid}/base")
 	public ModelAndView snsapiBaseNew(@PathVariable("authAppid") String authAppid,HttpServletRequest request,String r) throws Exception{
@@ -84,10 +80,8 @@ public class PreOauthAction extends AbstractAction{
 	 * Oauth认证获取用户基本信息
 	 * ? json去"
 	 * 
+	 * @param authAppid
 	 * @param request
-	 * @param param
-	 * @param redirectURL
-	 * @param ticket
 	 * @return	http://xxx/redirect/transfer.do?redirectURL=xxxx&phone=123456
 	 */
 	@RequestMapping("/{authAppid}/userinfo")

@@ -1,16 +1,4 @@
 package com.rtmap.core.action;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.alibaba.fastjson.JSONObject;
 import com.rtmap.core.cache.AuthManager;
 import com.rtmap.core.cache.TicketManager;
@@ -18,6 +6,16 @@ import com.rtmap.core.config.MpConstant;
 import com.rtmap.utils.string.UrlParser;
 import com.rtmap.wx.sdk.handler.WebServiceHandler;
 import com.rtmap.wx.sdk.token.OauthToken;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 
@@ -35,8 +33,7 @@ public class OauthAction extends AbstractAction{
 	 * Oauth网页认证
 	 * @Description: 
 	 * @param request
-	 * @param response
-	 * @return void    
+	 * @return void
 	 */
 	@RequestMapping("/{authAppid}/snsapi_base")
 	public ModelAndView OauthSnsapiBaseNew(@PathVariable("authAppid") String authAppid , HttpServletRequest request , String code , String state){
@@ -62,7 +59,6 @@ public class OauthAction extends AbstractAction{
 	 * Oauth网页认证
 	 * @Description: 
 	 * @param request
-	 * @param response
 	 * @return void    http://www.baidu.com/?aaa=xxx
 	 */
 	@RequestMapping("/{authAppid}/snsapi_userinfo")
