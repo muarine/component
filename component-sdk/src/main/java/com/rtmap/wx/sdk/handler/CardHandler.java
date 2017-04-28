@@ -7,12 +7,6 @@
  */
 package com.rtmap.wx.sdk.handler;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-
-import org.springframework.util.Assert;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.rtmap.utils.file.FileUtils;
 import com.rtmap.utils.json.JsonMapper;
@@ -20,6 +14,11 @@ import com.rtmap.wx.sdk.api.CardAPI;
 import com.rtmap.wx.sdk.model.PostJsonBuilder;
 import com.rtmap.wx.sdk.model.card.MCard;
 import com.rtmap.wx.sdk.utils.UploadMedia;
+import org.springframework.util.Assert;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
 
 /**
  * CardHandler. 微信卡券对接处理
@@ -41,8 +40,8 @@ public class CardHandler extends AbstractHandler{
     /**
      * 图片大小限制1M 
      * 
-     * @param access_token
-     * @param file
+     * @param access_token  票据
+     * @param url   图片地址
      * @return
      * <pre>
      *      {
@@ -64,8 +63,8 @@ public class CardHandler extends AbstractHandler{
     
     /**
      * 创建卡券 
-     * @param access_token
-     * @param card
+     * @param access_token  票据
+     * @param card          卡券
      * @return
      * <pre>
      *      {
@@ -90,9 +89,9 @@ public class CardHandler extends AbstractHandler{
     
     /**
      * 批量导入code
-     * @param access_token
-     * @param cardid
-     * @param codes
+     * @param access_token  票据
+     * @param cardid        卡券ID
+     * @param codes         自定义code集合
      * @return
      * <pre>
      *      {
@@ -120,9 +119,9 @@ public class CardHandler extends AbstractHandler{
     /**
      * 获取用户已领取卡券接口
      *  
-     * @param access_token
-     * @param openid
-     * @param cardid
+     * @param access_token  票据
+     * @param openid        用户标识
+     * @param cardid        卡券ID
      * @return 
      * <pre>
      *      {
@@ -146,8 +145,8 @@ public class CardHandler extends AbstractHandler{
     
     /**
      * 查询导入code数目 
-     * @param access_token
-     * @param card_id
+     * @param access_token  票据
+     * @param cardid        卡券ID
      * @return
      * <pre>
      *      {
@@ -170,9 +169,9 @@ public class CardHandler extends AbstractHandler{
     /**
      * 检查导入code
      * 
-     * @param access_token
-     * @param cardid
-     * @param codes
+     * @param access_token  票据
+     * @param cardid        卡券ID
+     * @param codes         自定义code集合
      * @return
      * <pre>
      * {
@@ -199,9 +198,10 @@ public class CardHandler extends AbstractHandler{
     /**
      * 修改卡券库存
      * 
-     * @param access_token
-     * @param cardid
-     * @param codes
+     * @param access_token  票据
+     * @param cardid        卡券ID
+     * @param increase      库存增加
+     * @param reduce        减少
      * @return
      * <pre>
      * {
@@ -224,9 +224,9 @@ public class CardHandler extends AbstractHandler{
     /**
      * 核销Code接口
      * 
-     * @param access_token
-     * @param cardid
-     * @param codes
+     * @param access_token  票据
+     * @param cardid        卡券ID
+     * @param code          券码
      * @return
      * <pre>
      * {
@@ -248,9 +248,9 @@ public class CardHandler extends AbstractHandler{
 
     /**
      * 查询Code
-     * @param access_token
-     * @param card_id
-     * @param code
+     * @param access_token  票据
+     * @param cardid        卡券ID
+     * @param code          券码
      * @return
      * <pre>
      *      {

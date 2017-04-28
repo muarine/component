@@ -77,7 +77,7 @@ public class CardAction extends AbstractAction{
                                                                             commonMap.get(MpConstant.APPID), 
                                                                             commonMap.get(MpConstant.APPSECRET), 
                                                                             authAppid), 
-                                                            mCard);
+                                                                            mCard);
             
             Assert.b_isTrue(node.get("errcode").asInt() != 0 , Code.Card.ERROR);
             String cardId = node.get("card_id").asText();

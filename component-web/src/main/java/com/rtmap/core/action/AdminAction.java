@@ -24,7 +24,7 @@ public class AdminAction {
 	
 	/**
 	 * 
-	 * FIXME Comment this
+	 * 授权首页
 	 * 
 	 * @return
 	 */
