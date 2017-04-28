@@ -45,7 +45,7 @@ public class MenuAction extends AbstractAction{
 			JsonNode result = MenuHandler.instance.createMenu(AuthManager.getAuthAccessToken(appid, appsecret, authAppid), menu_json);
 			return ResponseFactory.build(result);
 		} catch (IllegalArgumentException e) {
-		    return ResponseFactory.build(Code.INVALID_PARAM , e.getMessage());
+		    return ResponseFactory.buildMessage(Code.INVALID_PARAM , e.getMessage());
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(),e);
 			return ResponseFactory.build(Code.ERROR);

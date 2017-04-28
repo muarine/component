@@ -59,7 +59,7 @@ public class TicketAction extends AbstractAction{
             Map<String,String> data =  Sign.sign(appid,jsapi_ticket, url);
             return ResponseFactory.build(data);
         } catch (InvalidArgumentException e) {
-            return ResponseFactory.build(Code.INVALID_PARAM , e.getMessage());
+            return ResponseFactory.buildMessage(Code.INVALID_PARAM , e.getMessage());
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return ResponseFactory.build(Code.ERROR);
@@ -101,7 +101,7 @@ public class TicketAction extends AbstractAction{
             Map<String,Object> data = Sign.sign(jsapi_ticket , timestamp, card_id, code, openid, nonce_str);
             return ResponseFactory.build(data);
         } catch (InvalidArgumentException e) {
-            return ResponseFactory.build(Code.INVALID_PARAM , e.getMessage());
+            return ResponseFactory.buildMessage(Code.INVALID_PARAM , e.getMessage());
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return ResponseFactory.build(Code.ERROR);
@@ -146,7 +146,7 @@ public class TicketAction extends AbstractAction{
                 map.put("openId", openId);
                 return ResponseFactory.build(map);
             }else{
-                return ResponseFactory.build(Code.INVALID_PARAM , node.toString());
+                return ResponseFactory.buildMessage(Code.INVALID_PARAM , node.toString());
             }
         } catch (InvalidArgumentException e) {
             return ResponseFactory.build(Code.INVALID_PARAM);
