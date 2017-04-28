@@ -38,15 +38,16 @@ mvn install
 
 
 ### component-sdk
-
->  封装微信SDK
->  api 			微信API
->  exp			SDK内部异常
->  handler		对外开放Handler
->  model		消息解析/封装处理类，freemaker模板解析
->  mp.*		回调消息封装类
->  sign			消息加解密
->  utils		SDK内部工具类
+```text
+封装微信SDK
+api 		微信API
+exp		SDK内部异常
+handler		对外开放Handler
+model		消息解析/封装处理类，freemaker模板解析
+mp.*		回调消息封装类
+sign		消息加解密
+utils		SDK内部工具类
+```
 
 支持的权限集API
 
