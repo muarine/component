@@ -1,6 +1,6 @@
 ## 微信公众号三方平台
 
-* **Maven 模块聚合**
+* **Maven 模块聚合
 ```xml
 <modules>
 	<module>component-sdk</module>
@@ -12,9 +12,9 @@
 
 
 * **component-sdk	微信SDK**
-* **component-util	常用工具类**
-* **component-test	单元测试**
-* **component-web	Web应用**
+* **component-util  常用工具类**
+* **component-test  单元测试**
+* **component-web  Web应用**
 
 ## 如何接入使用
 * 导入数据库component-web/doc/database/component.sql
@@ -34,99 +34,36 @@ mvn install
 ```
 * 若使用Eclipse重新打包后工程出现编译错误的小红叉，重新编译一次即可(Project->Clean->选中component所有组件项目->OK)
 
-## 缓存KEY列表
-```java
-
-    /**
-     * 平台相关key
-     * Component_Key.
-     * 
-     * @author Muarine <maoyun@rtmap.com>
-     * @since 1.0.0
-     */
-    public static class Component_Key{
-        /**
-         * 公众号平台access_token
-         */
-        public static final String Component_A_T    = "Component_A_T";
-        /**
-         * 公众号平台verify_ticket
-         */
-        public static final String Component_V_T    = "Component_V_T";
-        /**
-         * 授权公众号的auth_access_token
-         */
-        public static final String Component_A_A_T  = "Component_Authorier_%s_A_T";
-        /**
-         * 授权公众号的auth_refresh_token
-         */
-        public static final String Component_A_R_T  = "Component_Authorier_%s_R_T";
-    }
-    
-    /**
-     * 授权账户相关key
-     * Authorizer_key.
-     * 
-     * @author Muarine <maoyun@rtmap.com>
-     * @since 1.0.0
-     */
-    public static class Authorizer_key{
-        /**
-         * 授权信息
-         * %s 表示authAppid
-         */
-        public static final String INFO         = "Component_Authorier_%s_Info";
-        /**
-         * 主键ID
-         * %s 表示authAppid
-         */
-        public static final String PRIMARY_ID   = "Component_Authorier_Appid_%s";
-        /**
-         * 是否有效
-         * %s 表示authAppid
-         */
-        public static final String ISLEGAL      = "Component_Authorier_Appid_%s_Islegal";
-    }
-    
-    /**
-     * 
-     * JSSDK_key.   JSSDK相关缓存key
-     * 
-     * @author Muarine <maoyun@rtmap.com>
-     * @since 1.0.0
-     */
-    public static class JSSDK_key{
-        
-        /**
-         * jsapi_ticket 缓存key
-         */
-        public static final String JS_TICKET_KEY    = "Component_Authorier_%s_Jsapi_Ticket";
-        /**
-         * wx_card ticket 缓存key
-         */
-        public static final String CARD_TICKET_KEY  = "Component_Authorier_%s_Card_Ticket";
-        /**
-         * 网页授权的access_token，这与基础支持中的access_token不同
-         */
-        public static final String JS_ACCESS_TOKEN  = "Component_Authorier_%s_Web_A_T";
-        /**
-         * 网页授权前置跳转时存入自定义参数：State
-         */
-        public static final String Oauth_State      = "Component_Authorizer_%s_State_%s";
-        
-    }
-
-    /**
-     * LBS 5+1beacon回调定位,共享cache
-     */
-    public static class Lbs_BeaconInfo {
-        /**
-         * 公众号下粉丝摇一摇定位结果
-         */
-        public static final String Authorizer_Openid_Shake_Result    = "Component_Authorier_%s_%s_Shake_Result";
-    }
-
-```
 
 
 
+### component-sdk
+
+>  封装微信SDK
+>  api 			微信API
+>  exp			SDK内部异常
+>  handler		对外开放Handler
+>  model		消息解析/封装处理类，freemaker模板解析
+>  mp.*		回调消息封装类
+>  sign			消息加解密
+>  utils		SDK内部工具类
+
+支持的权限集API
+
+| fid  | 权限集       | SDK API        |
+| ---- | --------- | -------------- |
+| 1    | 消息管理权限    | MpAPI          |
+| 2    | 用户管理权限    | UserAPI        |
+| 3    | 帐号服务权限    | UserAPI        |
+| 4    | 网页服务权限    | WebServiceAPI  |
+| 5    | 微信小店权限    | 暂无             |
+| 6    | 微信多客服权限   | 暂无             |
+| 7    | 群发与通知权限   | NotifyAPI      |
+| 8    | 微信卡券权限    | CardAPI        |
+| 9    | 微信扫一扫权限   | 暂无             |
+| 10   | 微信连WIFI权限 | 暂无             |
+| 11   | 素材管理权限    | MaterialAPI    |
+| 12   | 微信摇周边权限   | ShakeAroundAPI |
+| 13   | 微信门店权限    | PoiAPI         |
+| 14   | 微信支付权限    | 正在开发           |
+| 15   | 自定义菜单权限   | MenuAPI        |
