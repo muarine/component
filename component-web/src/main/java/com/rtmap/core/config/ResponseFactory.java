@@ -56,7 +56,6 @@ public class ResponseFactory {
     /**
      * 请求成功，构建返回数据
      * 
-     * @param data  返回数据
      * @return
      */
     public static Result build(){
@@ -91,7 +90,7 @@ public class ResponseFactory {
      * @param errmsg    自定义返回结果
      * @return
      */
-    public static Result build(Integer code , String errmsg){
+    public static Result buildMessage(Integer code , String errmsg){
         return _commonBuild(code , errmsg);
     }
     

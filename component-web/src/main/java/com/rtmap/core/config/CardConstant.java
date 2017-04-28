@@ -47,7 +47,7 @@ public class CardConstant {
         public final static String DISCOUNT = "discount"; 
     }
     /**
-     * State.    卡券状态
+     * State.    卡券状态GENERAL_COUPON
      * 
      * @author Muarine <maoyun@rtmap.com>
      * @date   2016年4月19日

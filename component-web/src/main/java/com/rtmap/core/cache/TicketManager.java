@@ -95,7 +95,8 @@ public class TicketManager extends AbstractCache{
     
     /**
      * 获取网页授权前置跳转时存入缓存中的自定义state
-     * @param state
+     * @param authAppid 授权方appId
+     * @param key       自定义缓存key
      * @return
      */
     public static String getOauthState(String authAppid , String key) {
@@ -104,9 +105,9 @@ public class TicketManager extends AbstractCache{
     
     /**
      * 网页授权前置跳转缓存自定义State
-     * 
-     * @param authAppid
-     * @param value
+     *
+     * @param authAppid 授权方appId
+     * @param key       自定义缓存key
      */
     public static void setOauthState(String authAppid , String key , String value){
         memcache.setKV(String.format(KeyConfig.JSSDK_key.Oauth_State, authAppid , key), value, KeyConfig.MINUTE_10);

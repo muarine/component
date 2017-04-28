@@ -34,8 +34,9 @@ public class WebServiceHandler extends AbstractHandler{
      * 创建Oauth网页认证
      * 
      * @param appid
-     * @param appsecret
      * @param code
+     * @param component_appid
+     * @param component_access_token
      * @return
      */
     public OauthToken getOAuthToken(String appid ,String code , String component_appid , String component_access_token){
@@ -64,9 +65,10 @@ public class WebServiceHandler extends AbstractHandler{
     * 获取OAuth2.0 UserInfo
     * 若code换取access_token失败,则不把token对象放入缓存
     * @param appid
-    * @param appsecret
     * @param code
-    * @return JSONObject
+     * @param component_appid
+     * @param component_access_token
+     * @return JSONObject
      */
     public OauthToken getOAuthUserinfo(String appid,String code , String component_appid ,String component_access_token) throws Exception{
         LOGGER.debug("appid:{},code:{},component_appid:{},component_access_token:{}",appid,code,component_appid,component_access_token);

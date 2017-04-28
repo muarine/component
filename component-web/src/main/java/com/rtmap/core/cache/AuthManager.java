@@ -183,8 +183,8 @@ public class AuthManager extends AbstractCache{
     
     /**
      * 设置授权方的永久缓存,默认存储时长一个月
-     * @param authAppid
-     * @param authAccessToken
+     * @param authAppid         授权方appId
+     * @param authRefreshToken  刷新Token
      */
     public static void setAuthorizerRT(String authAppid, String authRefreshToken) {
         LOGGER.debug("Component_A{}_R_T:{}",authAppid,authRefreshToken);

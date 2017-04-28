@@ -39,9 +39,7 @@ public class MessageHandler{
 	private PoiService poiService;
 	@Autowired
 	private CardService cardService;
-	@Autowired
-	private MQService mqService;
-	
+
 	/**
 	 * 逻辑判断消息类型，并返回相应的XML文本
 	 * @throws AesException 
@@ -189,7 +187,6 @@ public class MessageHandler{
 //                                msg.getFromUserName(), 
 //                                msg.getUserCardCode(), 
 //                                "consumeCode");
-        mqService.consumePrizePush(msg.getUserCardCode());
         return null;
     }
 
