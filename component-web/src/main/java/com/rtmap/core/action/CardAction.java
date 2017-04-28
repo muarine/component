@@ -7,19 +7,6 @@
  */
 package com.rtmap.core.action;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.rtmap.core.cache.AuthManager;
 import com.rtmap.core.config.CardConstant;
@@ -38,6 +25,15 @@ import com.rtmap.utils.http.CheckUrlUtil;
 import com.rtmap.utils.string.StringUtils;
 import com.rtmap.wx.sdk.handler.CardHandler;
 import com.rtmap.wx.sdk.model.card.MCard;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * CardAction.  微信卡券
@@ -60,11 +56,13 @@ public class CardAction extends AbstractAction{
      */
     @RequestMapping("/{authAppid}/create")
     public Result create(@PathVariable("authAppid") String authAppid , CardParam param , HttpServletRequest request){
-        if(LOGGER.isDebugEnabled()) LOGGER.debug("/card/{authAppid}/create param: \n{}" , param.toString());
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("/card/{authAppid}/create param: \n{}" , param.toString());
+        }
         LOGGER.info("charset:{}" , request.getCharacterEncoding());
         try {
             // 校验参数
-            this._checkParam(param);
+            this.checkParam(param);
             // 校验promoid和prizeid
             com.rtmap.core.domain.Card card = cardService.getCardByPromoAndPrizeId(param.getPromoid() , param.getPrizeid());
             
@@ -104,49 +102,7 @@ public class CardAction extends AbstractAction{
         }
         return ResponseFactory.build(Code.ERROR);
     }
-    
-    /**
-     * 根据营销平台活动维度
-     * 
-     * @param authAppid 授权方appid
-     * @param param     红包参数
-     * @return
-     */
-    @RequestMapping("/list/state")
-    public Result getPromoCardList(CardParam param){
-        if(LOGGER.isDebugEnabled()) LOGGER.debug("/card/list/state param: \n{}" , param.toString());
-        try {
-            Integer promoid = param.getPromoid();
-            Assert.notNull(param.getPromoid() , "promoid");
-            List<Card> cards = cardService.stateList(promoid);
-            List<Map<String,Object>> returns = new ArrayList<Map<String,Object>>();
-            if(null != cards && !cards.isEmpty()){
-                for (Card card : cards) {
-                    Map<String,Object> map = new LinkedHashMap<String,Object>();
-                    map.put("promoid", card.getFkPromoId());
-                    map.put("prizeid", card.getFkPrizeId());
-                    map.put("cardid", card.getCardId());
-                    map.put("state", card.getState());
-                    returns.add(map);
-                }
-            }
-            // 返回结果
-            return ResponseFactory.build(returns);
-        } catch (EmptyArgumentException e) {
-            LOGGER.debug(e.getMessage());
-            return ResponseFactory.build(Code.NULL_PARAM , e.getMessage());
-        } catch (InvalidArgumentException e) {
-            LOGGER.debug(e.getMessage());
-            return ResponseFactory.build(Code.INVALID_PARAM , e.getMessage());
-        } catch (BusinessException e) {
-            LOGGER.debug(e.getMessage());
-            return ResponseFactory.build(e.getMessage());
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage() , e);
-        }
-        return ResponseFactory.build(Code.ERROR);
-    }
-    
+
     /**
      * 
      * 
@@ -174,10 +130,6 @@ public class CardAction extends AbstractAction{
                                                         code);
             LOGGER.info(node.toString());
         } catch (EmptyArgumentException e) {
-            LOGGER.debug(e.getMessage());
-        } catch (InvalidArgumentException e) {
-            LOGGER.debug(e.getMessage());
-        } catch (BusinessException e) {
             LOGGER.debug(e.getMessage());
         } catch (Exception e) {
             LOGGER.error(e.getMessage() , e);
@@ -251,7 +203,7 @@ public class CardAction extends AbstractAction{
         return mcard;
     }
 
-    private void _checkParam(CardParam param) {
+    private void checkParam(CardParam param) {
         Integer cardType = param.getCard_type();
         // 校验非空参数
         Assert.notNull(param.getPromoid() , "promoid");

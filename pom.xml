@@ -16,12 +16,7 @@
 	<packaging>pom</packaging>
 	<name>${project.artifactId}</name>
 	<description>The parent project of component</description>
-	<url>http://www.rtmap.com/about.html</url>
 	<inceptionYear>2016</inceptionYear>
-	<organization>
-		<name>Rtmap</name>
-		<url>http://www.rtmap.com</url>
-	</organization>
 	<modules>
 		<module>component-sdk</module>
 		<module>component-utils</module>
@@ -136,26 +131,6 @@
 			
 		</dependencies>
 	</dependencyManagement>
-
-	<issueManagement>
-		<system>gitlab</system>
-		<url>http://182.92.3.90:12345/web/component/issues</url>
-	</issueManagement>
-	<scm>
-		<url>http://182.92.3.90:12345/web/component</url>
-		<connection>http://182.92.3.90:12345/web/component.git</connection>
-	</scm>
-	<developers>
-		<developer>
-			<name>maoyun(muarine)</name>
-			<id>muarine</id>
-			<email>maoyun@rtmap.com</email>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>+8</timezone>
-		</developer>
-	</developers>
 </project>
 
 

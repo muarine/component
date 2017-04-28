@@ -7,14 +7,6 @@
  */
 package com.rtmap.core.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.rtmap.core.cache.AuthManager;
 import com.rtmap.core.cache.TicketManager;
@@ -29,6 +21,13 @@ import com.rtmap.utils.http.RestfulTemplate;
 import com.rtmap.utils.string.StringUtils;
 import com.rtmap.wx.sdk.api.ShakeAroundAPI;
 import com.rtmap.wx.sdk.sign.Sign;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * TicketAction.    ticket相关接口，包含jsapi和wx_card相关ticket
@@ -46,8 +45,8 @@ public class TicketAction extends AbstractAction{
     /**
      * jsapi ticket
      *  
-     * @param authAppid
-     * @param url
+     * @param authAppid 受理方appId
+     * @param url       注册地址,需进行URLEncode
      * @return
      */
     @RequestMapping("/{authAppid}/jsapi_sign")
@@ -70,7 +69,7 @@ public class TicketAction extends AbstractAction{
     /**
      * 强制刷新jsapi ticket
      * 
-     * @param authAppid
+     * @param authAppid 受理方appId
      * @return
      */
     @RequestMapping("/{authAppid}/jsapi_sign/refresh")
@@ -84,8 +83,8 @@ public class TicketAction extends AbstractAction{
     /**
      * 获取wx_card的js-sdk ticket
      * 
-     * @param authAppid
-     * @param param
+     * @param authAppid 受理方appId
+     * @param param     卡券参数
      * @return
      */
     @RequestMapping("/{authAppid}/card_sign")
@@ -113,7 +112,7 @@ public class TicketAction extends AbstractAction{
     /**
      * 强制刷新jsapi ticket
      * 
-     * @param authAppid
+     * @param authAppid 受理方appId
      * @return
      */
     @RequestMapping("/{authAppid}/card_sign/refresh")
@@ -127,8 +126,8 @@ public class TicketAction extends AbstractAction{
     /**
      * ticket获取openid
      * 
-     * @param appid
-     * @param ticket
+     * @param authAppid 授权方appId
+     * @param ticket    票据
      * @return
      */
     @RequestMapping(value = "/{authAppid}/token/ticket")
@@ -143,8 +142,7 @@ public class TicketAction extends AbstractAction{
             JsonNode node = RestfulTemplate.INSTANCE.postForObject(url, map, JsonNode.class);
             int code = node.get("errcode").asInt();
             if (code == 0) {
-                JsonNode dataNode = node.get("data");
-                String openId = dataNode.get("openid").asText();
+                String openId = node.get("data").get("openid").asText();
                 map.put("openId", openId);
                 return ResponseFactory.build(map);
             }else{
