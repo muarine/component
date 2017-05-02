@@ -3,6 +3,8 @@
 * **Maven 模块聚合
 ```xml
 <modules>
+	<module>common-config</module>
+	<module>common-core</module>
 	<module>component-sdk</module>
 	<module>component-utils</module>
 	<module>component-test</module>
@@ -11,10 +13,12 @@
 ```
 
 
+* **common-config   环境配置**
+* **common-core	    核心模块**
 * **component-sdk	微信SDK**
 * **component-util  常用工具类**
 * **component-test  单元测试**
-* **component-web  Web应用**
+* **component-web   Web应用**
 
 ## 如何接入使用
 * 导入数据库component-web/doc/database/component.sql
@@ -47,6 +51,7 @@ model		消息解析/封装处理类，freemaker模板解析
 mp.*		回调消息封装类
 sign		消息加解密
 utils		SDK内部工具类
+pay		    微信支付相关
 ```
 
 支持的权限集API
