@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author muarine maoyun@rtmap.com
  * @since 0.1
  */
-public class TestCreateCard extends TestAbstractCard {
+public class CreateCardTest extends AbstractCardTest {
 	
 	/**
 	 * 上传卡券logo

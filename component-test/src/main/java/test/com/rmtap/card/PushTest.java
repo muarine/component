@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author muarine maoyun@rtmap.com
  * @since 0.1
  */
-public class TestPush extends TestAbstractCard {
+public class PushTest extends AbstractCardTest {
 	
 	
 	/**

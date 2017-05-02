@@ -61,7 +61,7 @@
 			    <configuration>
 			    	<includes>  
 	                    <!--包含所有后缀为Test.jave的类  -->
-	                    <include>**/Test*.java</include>  
+	                    <include>**/*Test.java</include>
 	                </includes> 
 	               <skip>true</skip>
 			    </configuration>  

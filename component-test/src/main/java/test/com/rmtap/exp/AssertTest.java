@@ -18,7 +18,7 @@ import test.com.rmtap.core.AbstractTest;
  * @date   2016年3月30日
  * @since 1.0.0
  */
-public class TestAssert extends AbstractTest{
+public class AssertTest extends AbstractTest{
     
     public void testAssert(){
         

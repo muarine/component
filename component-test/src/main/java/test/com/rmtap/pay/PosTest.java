@@ -7,9 +7,9 @@
  */
 package test.com.rmtap.pay;
 
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.model.MicroPay;
 import org.junit.Test;
 

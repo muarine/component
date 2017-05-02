@@ -21,7 +21,7 @@ import java.util.Random;
  * @author muarine maoyun@rtmap.com
  * @since 0.1
  */
-public class TestAbstractCard extends TestCase {
+public class AbstractCardTest extends TestCase {
 	
 	// 获取 智慧图开发账号的 access_token
 	protected String access_token = AccessTokenUtil.postAccessToken("wxf3a057928b881466");

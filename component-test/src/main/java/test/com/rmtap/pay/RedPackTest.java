@@ -1,9 +1,9 @@
 package test.com.rmtap.pay;
 
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.utils.string.OrderUtils;
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.model.RedPack;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2016 10/22/16 17:37
  * @since 2.0.0
  */
-public class TestRedPack {
+public class RedPackTest {
 
     /**
      * 普通模式发放现金红包

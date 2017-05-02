@@ -15,7 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import test.com.rmtap.card.TestAbstractCard;
+import test.com.rmtap.card.AbstractCardTest;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -29,7 +29,7 @@ import java.util.List;
  * @date   2016年4月17日
  * @since 1.0.0
  */
-public class TestHttp  extends TestAbstractCard{
+public class HttpTest extends AbstractCardTest {
 
 
     /**

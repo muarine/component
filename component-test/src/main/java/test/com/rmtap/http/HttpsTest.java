@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  * @date   2016年4月1日
  * @since 1.0.0
  */
-public class TestHttps extends TestCase{
+public class HttpsTest extends TestCase{
     
     public void testHttps(){
         

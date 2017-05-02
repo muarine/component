@@ -16,7 +16,7 @@ import com.rtmap.utils.http.RestfulTemplate;
  * @author muarine maoyun@rtmap.com
  * @since 0.1
  */
-public class TestPoi extends TestAbstractCard {
+public class PoiTest extends AbstractCardTest {
 	
 	/**
 	 * 上传门店图片

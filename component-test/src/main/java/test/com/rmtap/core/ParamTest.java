@@ -14,7 +14,7 @@ package test.com.rmtap.core;
  * @date   2016年4月11日
  * @since 1.0.0
  */
-public class TestParam extends AbstractTest{
+public class ParamTest extends AbstractTest{
     
     public void testParam(){
         

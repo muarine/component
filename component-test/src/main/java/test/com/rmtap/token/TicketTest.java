@@ -20,7 +20,7 @@ import test.com.rmtap.core.AbstractTest;
  * @date   2016年4月13日
  * @since 1.0.0
  */
-public class TestTicket extends AbstractTest{
+public class TicketTest extends AbstractTest{
     
     public void testCardSign(){
         //"{"code":"1460540251389291",

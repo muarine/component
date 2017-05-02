@@ -1,8 +1,8 @@
 package test.com.rmtap.pay;
 
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.model.UnifiedOrder;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ import java.util.Map;
  * @date 2016 10/22/16 09:29
  * @since 2.0.0
  */
-public class TestPrePay {
+public class PrePayTest {
 
     /**
      * 受理模式预下单

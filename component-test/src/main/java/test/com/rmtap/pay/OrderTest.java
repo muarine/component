@@ -9,7 +9,7 @@ import org.junit.Test;
  * @date 2016 10/22/16 09:29
  * @since 2.0.0
  */
-public class TestOrder {
+public class OrderTest {
 
     /**
      * 查询订单

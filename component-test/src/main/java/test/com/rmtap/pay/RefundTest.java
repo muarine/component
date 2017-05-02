@@ -8,10 +8,10 @@
 
 package test.com.rmtap.pay;
 
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.utils.string.OrderUtils;
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.model.Refund;
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ import java.util.Map;
  * @date 16/10/25
  * @since 1.0
  */
-public class TestRefund {
+public class RefundTest {
 
     /**
      * 普通模式退款

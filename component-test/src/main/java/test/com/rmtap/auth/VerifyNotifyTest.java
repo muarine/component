@@ -16,13 +16,13 @@ import com.rtmap.wx.sdk.sign.WXBizMsgCrypt;
 import junit.framework.TestCase;
 
 /**
- * TestVerifyNotify.
+ * VerifyNotifyTest.
  * 
  * @author Muarine <maoyun@rtmap.com>
  * @date   2016年3月29日
  * @since 1.0.0
  */
-public class TestVerifyNotify extends TestCase{
+public class VerifyNotifyTest extends TestCase{
     
     public void testTicket() throws AesException{
         /**

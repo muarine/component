@@ -14,14 +14,10 @@ import java.util.Map;
 
 import org.springframework.util.Assert;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rtmap.utils.json.JsonMapper;
 import com.rtmap.utils.string.IdGenerator;
-import com.rtmap.wx.sdk.api.CardAPI;
 import com.rtmap.wx.sdk.handler.CardHandler;
 import com.rtmap.wx.sdk.handler.PoiHandler;
 import com.rtmap.wx.sdk.model.PostJsonBuilder;
@@ -38,7 +34,7 @@ import com.rtmap.wx.sdk.sign.Sign;
  * @date   2016年4月8日
  * @since 1.0.0
  */
-public class TestFreemakerBuild extends TestAbstractCard{
+public class FreemakerBuildTest extends AbstractCardTest {
     
     /**
      * 创建POI
