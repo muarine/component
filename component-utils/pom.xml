@@ -70,7 +70,12 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
 			</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.rtmap</groupId>
+            <artifactId>component-sdk</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
        <build>
        <finalName>component-admin</finalName>
 		<plugins>

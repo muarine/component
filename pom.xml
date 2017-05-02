@@ -22,21 +22,43 @@
 		<module>component-utils</module>
 		<module>component-test</module>
 		<module>component-web</module>
+		<module>common-core</module>
+		<module>common-config</module>
 	</modules>
+
+
 	<profiles>
 		<profile>
-			<id>test</id>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+			</properties>
 			<activation>
-				<file>
-					<missing>.project</missing>
-				</file>
+				<activeByDefault>true</activeByDefault>
 			</activation>
-			<modules>
-				<module>component-test</module>
-			</modules>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<env>test</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>main</id>
+			<properties>
+				<env>main</env>
+			</properties>
 		</profile>
 	</profiles>
+
+
 	<properties>
+		<common-core.version>1.1.0</common-core.version>
+		<common-config.version>1.1.0</common-config.version>
+		<component-utils.version>1.1.0</component-utils.version>
+		<component-sdk.version>1.1.0</component-sdk.version>
+
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
 		<slf4j.version>1.7.13</slf4j.version>

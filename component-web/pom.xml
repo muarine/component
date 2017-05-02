@@ -49,6 +49,11 @@
             <artifactId>component-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
+		<dependency>
+			<groupId>com.rtmap</groupId>
+			<artifactId>common-config</artifactId>
+			<version>dev-1.1.0</version>
+		</dependency>
         
   		<dependency>
 			<groupId>org.apache.tomcat</groupId>
