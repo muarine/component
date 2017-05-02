@@ -1,9 +1,9 @@
 package com.rtmap.wx.sdk.pay.core;
 
-import com.rtmap.core.exception.RtmapConnectException;
-import com.rtmap.core.exception.RtmapInvalidException;
-import com.rtmap.core.utils.SignUtil;
-import com.rtmap.pay.exception.RtmapPayException;
+import com.rtmap.utils.security.SignUtil;
+import com.rtmap.wx.sdk.exp.RtmapConnectException;
+import com.rtmap.wx.sdk.exp.RtmapInvalidException;
+import com.rtmap.wx.sdk.exp.RtmapPayException;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
@@ -44,8 +44,8 @@ public class PayHandler extends RtmapObject{
      * @param <T>           泛型响应对象
      * @return
      */
-    protected static <T> T _request(String url, Map<String, Object> requestParam, String key , Class<T> clazz, String mchId , InputStream in) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
-        return __request(url , requestParam , key , clazz, true , true , mchId , in);
+    protected static <T> T request(String url, Map<String, Object> requestParam, String key , Class<T> clazz, String mchId , InputStream in) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
+        return request(url , requestParam , key , clazz, true , true , mchId , in);
     }
 
     /**
@@ -61,8 +61,8 @@ public class PayHandler extends RtmapObject{
      * @throws RtmapConnectException
      * @throws RtmapInvalidException
      */
-    protected static <T> T _requestNoCheckSign(String url, Map<String, Object> requestParam, String key ,Class<T> clazz, String mchId , InputStream in) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
-        return __request(url , requestParam , key , clazz, false , true , mchId , in);
+    protected static <T> T requestNoCheckSign(String url, Map<String, Object> requestParam, String key ,Class<T> clazz, String mchId , InputStream in) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
+        return request(url , requestParam , key , clazz, false , true , mchId , in);
     }
 
     /**
@@ -81,10 +81,10 @@ public class PayHandler extends RtmapObject{
      * @throws RtmapInvalidException
      * @throws RtmapPayException
      */
-    protected static <T> T _request(String url, Map<String, Object> requestParam,
+    protected static <T> T request(String url, Map<String, Object> requestParam,
                                    String key , Class<T> clazz)
             throws RtmapConnectException, RtmapInvalidException, RtmapPayException {
-        return __request(url , requestParam , key , clazz , true , false , null , null);
+        return request(url , requestParam , key , clazz , true , false , null , null);
     }
 
     /**
@@ -100,7 +100,7 @@ public class PayHandler extends RtmapObject{
      * @throws RtmapInvalidException
      * @throws RtmapPayException
      */
-    private static <T> T __request(String url, Map<String, Object> requestParam,
+    private static <T> T request(String url, Map<String, Object> requestParam,
                                    String key , Class<T> clazz , boolean checkSign ,
                                    boolean useCert , String mchId , InputStream in) throws RtmapConnectException, RtmapInvalidException, RtmapPayException {
         // 签名
@@ -108,7 +108,7 @@ public class PayHandler extends RtmapObject{
         // 组装请求XML报文
         String body = SignUtil.mapToXML(requestParam);
         // 发送请求
-        RtmapResponse response = __makeURLConnectionRequest(RequestMethod.POST , url , body , useCert , mchId , in);
+        RtmapResponse response = makeURLConnectionRequest(RequestMethod.POST , url , body , useCert , mchId , in);
         // 检测响应报文
         if(response.getErrcode() != 200){
             throw new RtmapConnectException(String.format("响应码:%s , 网络请求失败" , response.getErrcode()));
@@ -117,9 +117,9 @@ public class PayHandler extends RtmapObject{
         String result = response.getResult();
         Map<String, Object> responseMap = SignUtil.xmlToMap(result);
 
-        __handlerErrMsg(result , responseMap , key , checkSign);
+        handlerErrMsg(result , responseMap , key , checkSign);
 
-        return _mapToInstance(responseMap , clazz);
+        return mapToInstance(responseMap , clazz);
     }
 
 
@@ -133,19 +133,19 @@ public class PayHandler extends RtmapObject{
      * @param key               支付密钥
      * @throws RtmapPayException
      */
-    private static void __handlerErrMsg(String result , Map<String, Object> responseResult , String key , boolean checkSign) throws RtmapPayException {
+    private static void handlerErrMsg(String result , Map<String, Object> responseResult , String key , boolean checkSign) throws RtmapPayException {
 
 
         // 3. 判定结果  先判断协议字段返回，再判断业务返回，最后判断交易状态
         String return_code = responseResult.get("return_code").toString();
         if (!return_code.equals("SUCCESS")) {
-            throw new RtmapPayException(return_code , __objToStr(responseResult.get("return_msg")) , result);
+            throw new RtmapPayException(return_code , objToStr(responseResult.get("return_msg")) , result);
         }
         String result_code = responseResult.get("result_code").toString();
         if(!result_code.equals("SUCCESS")){
-            throw new RtmapPayException(return_code , __objToStr(responseResult.get("return_msg")) ,
-                    __objToStr(responseResult.get("result_code")),__objToStr(responseResult.get("err_code")),
-                    __objToStr(responseResult.get("err_code_des")) ,result);
+            throw new RtmapPayException(return_code , objToStr(responseResult.get("return_msg")) ,
+                    objToStr(responseResult.get("result_code")),objToStr(responseResult.get("err_code")),
+                    objToStr(responseResult.get("err_code_des")) ,result);
         }
         // 签名校验
         if (checkSign && !SignUtil.checkMapSign(responseResult, key)){
@@ -154,7 +154,7 @@ public class PayHandler extends RtmapObject{
 
     }
 
-    private static String __objToStr(Object obj){
+    private static String objToStr(Object obj){
         if(obj == null){
             return "";
         }
@@ -170,7 +170,7 @@ public class PayHandler extends RtmapObject{
      * @return
      * @throws RtmapConnectException
      */
-    private static RtmapResponse __makeURLConnectionRequest(
+    private static RtmapResponse makeURLConnectionRequest(
             PayHandler.RequestMethod method, String url, String body , boolean useCert , String mchId , InputStream in) throws RtmapConnectException {
         HttpURLConnection conn = null;
         try {
@@ -179,7 +179,7 @@ public class PayHandler extends RtmapObject{
 //                    conn = createGetConnection(url, body);
 //                    break;
                 case POST:
-                    conn = __createPostConnection(url, body , useCert , mchId , in);
+                    conn = createPostConnection(url, body , useCert , mchId , in);
                     break;
 //                case DELETE:
 //                    conn = createDeleteConnection(url, body);
@@ -218,7 +218,7 @@ public class PayHandler extends RtmapObject{
      * @return
      * @throws IOException
      */
-    private static HttpURLConnection __createPostConnection(String url , String body , boolean useCert , String mchId , InputStream in) throws IOException, RtmapConnectException {
+    private static HttpURLConnection createPostConnection(String url , String body , boolean useCert , String mchId , InputStream in) throws IOException, RtmapConnectException {
         URL connURL = new URL(url);
         HttpsURLConnection conn = (HttpsURLConnection) connURL.openConnection();
 

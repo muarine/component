@@ -38,7 +38,7 @@ public abstract class RtmapObject {
     }
 
 
-    protected static <T> T _mapToInstance(Map<String, Object> resultMap, Class<T> clazz){
+    protected static <T> T mapToInstance(Map<String, Object> resultMap, Class<T> clazz){
         // Map to Json
         String mapJson = JSON.toJSONString(resultMap);
 
