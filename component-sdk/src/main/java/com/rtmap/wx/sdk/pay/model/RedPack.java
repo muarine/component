@@ -1,9 +1,9 @@
 package com.rtmap.wx.sdk.pay.model;
 
 
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.core.PayAPI;
 import com.rtmap.wx.sdk.pay.core.PayHandler;
 
@@ -38,7 +38,7 @@ public class RedPack extends PayHandler {
         if(mchId == null || mchId.equals("")){
             throw new RtmapInvalidException("mch_id 不能为空");
         }
-        return _requestNoCheckSign(PayAPI.getSendRedPack() , requestParam, key ,RedPack.class ,mchId.toString() , certInputStream);
+        return requestNoCheckSign(PayAPI.getSendRedPack() , requestParam, key ,RedPack.class ,mchId.toString() , certInputStream);
     }
 
     public String getMchBillno() {

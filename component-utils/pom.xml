@@ -72,12 +72,12 @@
 			</dependency>
         <dependency>
             <groupId>com.rtmap</groupId>
-            <artifactId>component-sdk</artifactId>
-            <version>1.0.1</version>
+            <artifactId>common-core</artifactId>
+			<version>${env}-${common-core.version}</version>
         </dependency>
     </dependencies>
        <build>
-       <finalName>component-admin</finalName>
+		   <finalName>${project.artifactId}-${env}-${component-utils.version}</finalName>
 		<plugins>
 	        <plugin>
 	            <artifactId>maven-compiler-plugin</artifactId>

@@ -1,13 +1,25 @@
-package com.rtmap.wx.sdk.exp;
+package com.rtmap.core.exp;
 
 /**
- * RtmapConnectException
+ * RtmapInvalidException
  *
  * @author Muarine<maoyun@rtmap.com>
- * @date 2016 10/21/16 17:35
+ * @date 2016 10/21/16 19:54
  * @since 2.0.0
  */
-public class RtmapConnectException extends Exception {
+public class RtmapInvalidException extends Exception {
+
+    /**
+     * Constructs a new exception with the specified detail message.  The
+     * cause is not initialized, and may subsequently be initialized by
+     * a call to {@link #initCause}.
+     *
+     * @param message the detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
+     */
+    public RtmapInvalidException(String message) {
+        super(message);
+    }
 
     /**
      * Constructs a new exception with the specified detail message and
@@ -23,19 +35,7 @@ public class RtmapConnectException extends Exception {
      *                unknown.)
      * @since 1.4
      */
-    public RtmapConnectException(String message, Throwable cause) {
+    public RtmapInvalidException(String message, Throwable cause) {
         super(message, cause);
-    }
-
-    /**
-     * Constructs a new exception with the specified detail message.  The
-     * cause is not initialized, and may subsequently be initialized by
-     * a call to {@link #initCause}.
-     *
-     * @param message the detail message. The detail message is saved for
-     *                later retrieval by the {@link #getMessage()} method.
-     */
-    public RtmapConnectException(String message) {
-        super(message);
     }
 }

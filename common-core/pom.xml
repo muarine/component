@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-core</artifactId>
-
+    <version>${env}-${common-core.version}</version>
     <build>
         <finalName>${project.artifactId}-${env}-${common-core.version}</finalName>
     </build>

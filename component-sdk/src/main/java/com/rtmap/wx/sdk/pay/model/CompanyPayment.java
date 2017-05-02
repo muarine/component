@@ -1,8 +1,8 @@
 package com.rtmap.wx.sdk.pay.model;
 
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.core.PayAPI;
 import com.rtmap.wx.sdk.pay.core.PayHandler;
 
@@ -26,7 +26,9 @@ public class CompanyPayment extends PayHandler {
     /**
      * 企业付款
      *
-     * @param requestParam
+     * @param requestParam  请求参数
+     * @param key           支付密钥
+     * @param in            证书输入流
      * @return
      */
     public static CompanyPayment create(Map<String ,Object> requestParam , String key , InputStream in) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
@@ -34,7 +36,7 @@ public class CompanyPayment extends PayHandler {
         if(mchId == null || mchId.equals("")){
             throw new RtmapInvalidException("mchid 不能为空");
         }
-        return _requestNoCheckSign(PayAPI.getPromotionTransfers() , requestParam, key ,CompanyPayment.class ,mchId.toString() , in);
+        return requestNoCheckSign(PayAPI.getPromotionTransfers() , requestParam, key ,CompanyPayment.class ,mchId.toString() , in);
     }
 
 

@@ -1,6 +1,7 @@
 
 package com.rtmap.utils.security;
 
+import com.rtmap.core.exp.RtmapInvalidException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

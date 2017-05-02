@@ -8,9 +8,9 @@
 package com.rtmap.wx.sdk.pay.model;
 
 
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.core.PayAPI;
 import com.rtmap.wx.sdk.pay.core.PayHandler;
 
@@ -44,7 +44,7 @@ public class MicroPay extends PayHandler {
      */
     public static MicroPay create(Map<String, Object> requestParam, String key) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
 
-        return _request(PayAPI.getMicroPay(), requestParam, key, MicroPay.class);
+        return request(PayAPI.getMicroPay(), requestParam, key, MicroPay.class);
     }
 
 

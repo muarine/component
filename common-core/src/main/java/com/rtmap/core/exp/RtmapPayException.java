@@ -1,4 +1,4 @@
-package com.rtmap.wx.sdk.exp;
+package com.rtmap.core.exp;
 
 /**
  * RtmapPayException 检测到支付出现业务异常

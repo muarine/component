@@ -72,9 +72,15 @@
 			<artifactId>freemarker</artifactId>
 			<version>2.3.20</version>
 		</dependency>
-		
-	</dependencies>
+        <dependency>
+            <groupId>com.rtmap</groupId>
+            <artifactId>common-core</artifactId>
+            <version>${env}-${common-core.version}</version>
+        </dependency>
+
+    </dependencies>
 	<build>
+		<finalName>${project.artifactId}-${env}-${component-sdk.version}</finalName>
 		<plugins>
 	        <plugin>
 	            <artifactId>maven-compiler-plugin</artifactId>

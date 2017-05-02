@@ -55,8 +55,8 @@
 	<properties>
 		<common-core.version>1.1.0</common-core.version>
 		<common-config.version>1.1.0</common-config.version>
-		<component-utils.version>1.1.0</component-utils.version>
-		<component-sdk.version>1.1.0</component-sdk.version>
+		<component-utils.version>1.0.1</component-utils.version>
+		<component-sdk.version>1.0.1</component-sdk.version>
 
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

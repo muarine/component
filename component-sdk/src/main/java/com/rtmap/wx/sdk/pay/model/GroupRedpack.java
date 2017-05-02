@@ -1,9 +1,9 @@
 package com.rtmap.wx.sdk.pay.model;
 
 
-import com.rtmap.wx.sdk.exp.RtmapConnectException;
-import com.rtmap.wx.sdk.exp.RtmapInvalidException;
-import com.rtmap.wx.sdk.exp.RtmapPayException;
+import com.rtmap.core.exp.RtmapConnectException;
+import com.rtmap.core.exp.RtmapInvalidException;
+import com.rtmap.core.exp.RtmapPayException;
 import com.rtmap.wx.sdk.pay.core.PayAPI;
 import com.rtmap.wx.sdk.pay.core.PayHandler;
 
@@ -30,7 +30,9 @@ public class GroupRedpack extends PayHandler {
     /**
      * 裂变红包
      *
-     * @param requestParam
+     * @param requestParam  请求参数
+     * @param key           密钥
+     * @param in            证书
      * @return
      */
     public static GroupRedpack create(Map<String ,Object> requestParam , String key , InputStream in) throws RtmapPayException, RtmapConnectException, RtmapInvalidException {
@@ -38,7 +40,7 @@ public class GroupRedpack extends PayHandler {
         if(mchId == null || mchId.equals("")){
             throw new RtmapInvalidException("mch_id 不能为空");
         }
-        return _requestNoCheckSign(PayAPI.getOrderQuery() , requestParam, key ,GroupRedpack.class ,mchId.toString() , in);
+        return requestNoCheckSign(PayAPI.getOrderQuery() , requestParam, key ,GroupRedpack.class ,mchId.toString() , in);
     }
 
     public String getMchBillno() {
