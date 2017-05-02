@@ -184,6 +184,11 @@
 			<artifactId>mail</artifactId>
 			<version>${mail.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.rtmap</groupId>
+			<artifactId>common-config</artifactId>
+			<version>${env}-${common-config.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>component-web</finalName>
