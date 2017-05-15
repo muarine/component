@@ -1,6 +1,7 @@
 ## 微信公众号三方平台
 
-* **Maven 模块聚合
+* Maven 模块聚合
+
 ```xml
 <modules>
 	<module>common-config</module>
